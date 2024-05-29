@@ -1,0 +1,97 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Timetable Scheduler</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'CSS/style.css' %}"
+    />
+  </head>
+  <body>
+    <div class="main">
+      <div class="logo">
+        <h2>Time_Scheduler</h2>
+        <h4>Friendly AI is here for you...</h4>
+      </div>
+      <nav>
+        <ul>
+          <li>
+            <a href="{% url 'mm1:home'%}"><strong>Home</strong></a>
+          </li>
+          <li>
+            <a href="{% url 'mm1:addinstructor'%}"
+              ><strong>Add Instructor</strong></a
+            >
+          </li>
+          <li>
+            <a href="{% url 'mm1:addroom'%}"><strong>Add Room</strong> </a>
+          </li>
+          <li>
+            <a href="{% url 'mm1:addmeetingtime'%}"
+              ><strong>Add Meeting time</strong></a
+            >
+          </li>
+          <li>
+            <a href="{% url 'mm1:addcourse'%}"><strong>Add Course</strong></a>
+          </li>
+          <li>
+            <a href="{% url 'mm1:adddepartment'%}"
+              ><strong>Add department</strong></a
+            >
+          </li>
+          <li>
+            <a href="{% url 'mm1:addsection'%}"><strong>Add Section</strong></a>
+          </li>
+          <li style>
+            <form
+              class="logout-link"
+              action="{% url 'mm1:logout'%}"
+              method="post"
+            >
+              {% csrf_token %}
+              <button
+                type="submit"
+                style="
+                  color: red;
+                  border: 2px solid black;
+                  border-radius: 20px;
+                  padding: 5px;
+                  cursor: pointer;
+                "
+              >
+                <strong>Logout</strong>
+              </button>
+            </form>
+          </li>
+          <li>
+            <a href="{% url 'admin:index' %}" style="border: 2px solid black;padding: 5px;margin-left: 8px;""
+              >Admin Panel</a
+            >
+          </li>
+        </ul>
+      </nav>
+      {% block content %} {% endblock %}
+    </div>
+
+    <script type="text/javascript">
+      var checkList = document.getElementById("list1");
+      var items = document.getElementById("items");
+      checkList.getElementsByClassName("anchor")[0].onclick = function (evt) {
+        if (items.classList.contains("visible")) {
+          items.classList.remove("visible");
+          items.style.display = "none";
+        } else {
+          items.classList.add("visible");
+          items.style.display = "block";
+        }
+      };
+
+      items.onblur = function (evt) {
+        items.classList.remove("visible");
+      };
+    </script>
+  </body>
+</html>

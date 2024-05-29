@@ -1,0 +1,45 @@
+{% extends 'base.html' %} {% block content %}
+<div style="display: flex; margin: auto">
+  <form
+    class="site-form"
+    action="{% url 'mm1:login' %}"
+    method="post"
+    style="text-align: left; width: 300px"
+  >
+    {% csrf_token %}
+    <label for="username" style="display: block; margin-bottom: 10px"
+      >Username:</label
+    >
+    <input
+      type="text"
+      id="username"
+      name="username"
+      style="margin-bottom: 10px; padding: 5px; width: 100%"
+    /><br />
+    <label for="password" style="display: block; margin-bottom: 10px"
+      >Password:</label
+    >
+    <input
+      type="password"
+      id="password"
+      name="password"
+      style="margin-bottom: 10px; padding: 5px; width: 100%"
+    /><br />
+    {% if request.GET.next %}
+    <input type="hidden" name="next" value="{{request.GET.next}}" />
+    {% endif %}
+    <input
+      type="submit"
+      value="Login"
+      style="
+        background-color: green;
+        color: white;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+      "
+    />
+  </form>
+</div>
+{% endblock %}
